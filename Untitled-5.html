@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> insert title here lol </title>
+    <style>
+    li {color: pink;}
+</style>
+</head>
+<body>
+        <canvas id="myCanvas" width="800" height= "800"></canvas>
+        <script>
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        
+        var x = 0
+        var y = 0
+        var vx = 10
+        var vy = 10
+        
+        document.addEventListener( 'keydown', function(event) {
+     	  console.log(event)
+     	  if (event.key == "ArrowLeft") {
+         	  vx = -vx
+     	  } else if (event.key == "ArrowUp") {
+         	  vy = -vy
+     	  }
+           if (event.key == "ArrowRight") {
+               vx = -vx
+           } else if (event.key == "ArrowDown") {
+               vy = -vy 
+           }
+        })
+        function ball() {
+     	    ctx.clearRect(0,0, c.width, c.height)
+            x = x + vx;
+            y = y + vy;
+            if (x > c.width || x < 0) {
+     	    vx = -vx
+            }
+            if (y > c.height || y < 0) {
+     	    vy = -vy
+            }
+            ctx.beginPath();
+            ctx.arc(x,y,40,0,2*Math.PI);
+            ctx.stroke();
+            requestAnimationFrame(ball);
+            ctx.rect(20,20,500,100);
+            ctx.stroke();
+            ctx.clearRect(20,20,500, 100)
+            x = x + vx;
+            y = y + vy;
+            if (x > c.width || x < 500) {
+     	    vx = -vx
+            }
+            if (y > c.height || y < 100) {
+     	    vy = -vy
+            }
+            
+        
+        }
+        
+        ball()
+        
+        </script>
+</body>
+</html>
+
+
